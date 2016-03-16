@@ -27,6 +27,7 @@ var streznik = http.createServer(function(zahteva, odgovor) {
    }
 });
 
+
 function posredujOsnovnoStran(odgovor) {
     posredujStaticnoVsebino(odgovor, './public/fribox.html', "");
 }
