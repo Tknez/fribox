@@ -26,7 +26,9 @@ var streznik = http.createServer(function(zahteva, odgovor) {
        posredujStaticnoVsebino(odgovor, './public' + zahteva.url, "");
    }
 });
-
+streznik.listen(process.env.PORT, function() {
+   console.log("Streznik zagnan!") 
+});
 
 function posredujOsnovnoStran(odgovor) {
     posredujStaticnoVsebino(odgovor, './public/fribox.html', "");
