@@ -41,15 +41,29 @@ function posredujStaticnoVsebino(odgovor, absolutnaPotDoDatoteke, mimeType) {
             if (datotekaObstaja) {
                 fs.readFile(absolutnaPotDoDatoteke, function(napaka, datotekaVsebina) {
                     if (napaka) {
-                        //Posreduj napako
+                        error500(odgovor);
                     } else {
                         posredujDatoteko(odgovor, absolutnaPotDoDatoteke, datotekaVsebina, mimeType);
                     }
                 })
             } else {
-                //Posreduj napako
+                error404(odgovor);
             }
         })
+}
+
+function error404(odgovor) {
+    odgovor.writeHead(404, {'Context-Type':'text/plain'});
+    odgovor.write("Napaka 404: Napaka na odjemalcu!");
+    odgovor.end();
+    
+}
+
+function error500(odgovor) {
+    odgovor.writeHead(500, {'Context-Type':'text/plain'});
+    odgovor.write("Napaka 500: Napaka na strežniku!");
+    odgovor.end();
+    
 }
 
 function posredujDatoteko(odgovor, datotekaPot, datotekaVsebina, mimeType) {
